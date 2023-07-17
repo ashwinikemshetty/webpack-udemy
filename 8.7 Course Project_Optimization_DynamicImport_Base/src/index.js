@@ -5,7 +5,7 @@ import Typed from "typed.js";
 import validate from "validate.js";
 import toastr from "toastr";
 // import banner from './assets/banner-image.png';
-import showModal from "./components/modal";
+// import showModal from "./components/modal";
 
 import "./index.css";
 import "./_vendor.scss";
@@ -60,8 +60,11 @@ buildFooterItems(footerCol2, footerCol2Items);
 buildFooterItems(footerCol3, footerCol3Items);
 
 $("#pricing-plan").on("click", function () {
-  showModal();
-  $("#myModal").css("display", "block");
+  import(/* webpackChunkName: "modal" */ "./components/modal").then((modal) => {
+    const showModal = modal.default;
+    showModal();
+    $("#myModal").css("display", "block");
+  });
 });
 
 // const bannerEl = $("#banner-image")[0];
